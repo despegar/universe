@@ -39,7 +39,8 @@ def main():
               ' before running this script.'.format(args.outdir))
         return
     else:
-        print(list(args.outdir.glob('*')))
+        print('Paths present in [{}]: {}'
+            .format(str(args.outdir), [str(p) for p in list(args.outdir.glob('*'))]))
 
     if not args.repository.is_dir():
         print('The path in --repository [{}] is not a directory.'.format(
@@ -725,15 +726,7 @@ def _populate_dcos_version_json_to_folder(dcos_version, outdir):
     :type outdir: str
     :return: None
     """
-    repo_dir = outdir / dcos_version / 'package'
-    repo_dir = repo_dir.resolve()
-    path = pathlib.Path(repo_dir)
-    print(path.is_dir())
-    print(path.is_file())
-    print(path.is_mount())
-    print(path.is_symlink())
-    print(path.resolve())
-    print(list(path.glob('*')))
+    repo_dir = (outdir / dcos_version / 'package').resolve()
     pathlib.Path(repo_dir).mkdir(parents=True)
     repo_file = pathlib.Path(outdir / 'repo-up-to-{}.json'.format(dcos_version))
     with repo_file.open('r',  encoding='utf-8') as f:
