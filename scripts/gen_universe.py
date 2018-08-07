@@ -38,9 +38,8 @@ def main():
         print('The path in --out-dir [{}] is not a directory. Please create it'
               ' before running this script.'.format(args.outdir))
         return
-    elif os.listdir(str(args.outdir)):
-        print('The target directory [{}] has to be empty.'.format(args.outdir))
-        return
+    else:
+        print(list(args.outdir.glob('*')))
 
     if not args.repository.is_dir():
         print('The path in --repository [{}] is not a directory.'.format(
