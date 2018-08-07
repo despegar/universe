@@ -38,7 +38,7 @@ def main():
         print('The path in --out-dir [{}] is not a directory. Please create it'
               ' before running this script.'.format(args.outdir))
         return
-    else if os.listdir(str(args.outdir)):
+    elif os.listdir(str(args.outdir)):
         print('The target directory [{}] has to be empty.'.format(args.outdir))
         return
 
